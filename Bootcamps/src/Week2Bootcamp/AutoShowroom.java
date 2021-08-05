@@ -20,6 +20,7 @@ public class AutoShowroom {
         createCars();
         displayCars();
         System.out.println("Thank you for visiting FIT2099 Showroom");
+        // The code below is from Task 3
         // Car newCar = new Car();
         // System.out.println(newCar.getCarDescription());
     }

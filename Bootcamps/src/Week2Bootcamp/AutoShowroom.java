@@ -2,11 +2,13 @@ package Week2Bootcamp;
 
 public class AutoShowroom {
     Car[] carArray = new Car[3];
+
     public void createCars(){
         carArray[0] = new Car("BMW", "XY");
         carArray[1] = new Car("Audi", "A8");
         carArray[2] = new Car("Mercedes", "GLS");
     }
+
     public void printStatus(){
         System.out.println("Welcome to FIT2099 Showroom");
         createCars();

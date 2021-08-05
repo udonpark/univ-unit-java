@@ -8,6 +8,7 @@ public class Car {
         this.make = make;
         this.model = model;
     }
+
     public String getCarDescription(){
         return "Maker:" + make + " and" + " Model:" + model;
     }

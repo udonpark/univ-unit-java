@@ -6,7 +6,6 @@ public class AutoShowroom {
         carArray[0] = new Car("BMW", "XY");
         carArray[1] = new Car("Audi", "A8");
         carArray[2] = new Car("Mercedes", "GLS");
-
     }
     public void printStatus(){
         System.out.println("Welcome to FIT2099 Showroom");
@@ -14,7 +13,7 @@ public class AutoShowroom {
         displayCars();
         System.out.println("Thank you for visiting FIT2099 Showroom");
         // The code below is from Task 3
-        // Car newCar = new Car();
+        // Car newCar = new Car("BMW", "X7");
         // System.out.println(newCar.getCarDescription());
     }
 

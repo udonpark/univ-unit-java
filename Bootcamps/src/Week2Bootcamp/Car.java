@@ -12,5 +12,8 @@ public class Car {
     public String getCarDescription(){
         return "Maker:" + make + " and" + " Model:" + model;
     }
-
+// code from task 3:
+// public String getCarDescription(){
+// return make + model;
+// }
 }

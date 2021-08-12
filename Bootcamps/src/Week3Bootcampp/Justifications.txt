@@ -1,0 +1,33 @@
+Task 4 Yo Kogure
+
+I have decided to use integer type for the type of buyerId.
+
+<String>
+Advantage of using Java string is that ID can take variable kind of shapes.
+For example, allowing an alphabet gives us better visualization of who that buyer might be.
+e.g. "FIT1045" and "MAT1830" are easier to distinguish than "1045" and "1830". We can make format
+however we would like it to be.
+The disadvantage of using string is that because it can take too many forms, it is hard to see them in order.
+For example, if we are to include A-Z, it can store 26 buyer accordingly.
+But those are used we have to re-define the structure so the ID is likely to be messy.
+
+<Integer>
+The advantage of using numeric value, on the other hand, because it can take 1-9, a base 10 is very easy to comprehend.
+We can assign buyer ID's and increment one by one with no worries. for example, "1000" to "9999" can hold ID nice and neat.
+The great thing is, we can use them for intuitive comparison. If we perform numeric comparison ID1 < ID2, then we know that someone with
+ID1 has registered before ID2. Plus, it is easier to restrict input range with integers than strings.
+The disadvantage however, is that it is hard to see the characteristics of a person, and it can only contain key to identify.
+For example, buyerIds could have "GOLD244" or "SILVER266" to indicate the customer rank of that bidder, for example.
+
+However, I have decided to use Integer in this example. It takes memory space in the architecture too, as string is a combination of characters.
+This decision will come in handy when I have to compare/play around with integers later on, or when we have to use random
+number generator for valid ID creation.
+
+<Name>
+I am using given name and family name rather than first name and last name.
+This is because if someone has a middle name, they might wonder where to enter that. This way they would
+know where to input, because they are either given or family name(usually belong to family name).
+
+Furthermore, since I would like to record the official name of the buyer and not nickname/unofficial name.
+given and family name style is easier to comprehend for users.
+

@@ -1,0 +1,42 @@
+Here is my approach to Task 7.
+
+I would like to add a new method that prints a list of all buyers without any duplicates.
+
+I will be adding a new method printBuyers() in the AutoShowroom class. Because this is where a similar method
+displayCars() exist for printing car information. Furthermore, I can access to both Bid and Buyer class to obtain
+required variables and data.
+Buyers have 3 attributes, buyerId, givenName and familyName.
+In order to distinguish, I am focusing on Buyer ID to compare, because people could have same exact name but can be different.
+Buyer ID is for unique to everyone. But I will record the whole Buyer object, because I want to print whole Buyer later on.
+NOTE: I could just use description() in Buyer class to obtain whole string, but since there can be a type during the
+I/O, and one character mistake could lead to be identified as different person. So for consistency I am using this method.
+
+The Framework of this method is:
+    1) Create an ArrayList buyerList to store Buyer class. It won't be an array since we still don't know how many buyers they are in total.
+    I would like to keep it dynamic to add or remove Buyer object freely.
+    2) Use for loop to iterate through all Car instances. Take note of the index as we use it inside the loop
+    to locate which car we are taking information from.
+    3) For each Car, use for loop to iterate through all Bids, and for each Bids, access Buyer to add it into buyerList.
+    However, only add to it the buyerList if the new Buyer ID is not already contained inside the IDs. I will implement
+    pseudocode later on.
+    NOTE: Mutator for buyerId, getBuyerId() has to be added in Buyer class to compare.
+    4) Now buyerList contains all non-duplicate Buyers, so print them one by one.
+
+The pseudocode(Very rough one):
+
+declare and initialize buyerList, ArrayList<Buyer>
+boolean isDuplicate = false // this is an indicator whether a buyer already exists or not
+
+for i=0 to carArray.size() do
+    for j=0 to carArray(i).getBid().max do // go through all j while bids exist in the arraylist
+        newBuyer = carArray(i).getBid(j).getBuyer() // object extracted. now check if it meets cond.
+        for k to buyerList.size() do
+            if buyerList(k).getBuyerId() == newBuyer.getBuyerId() then
+                isDuplicate == true  // break from this for loop and go look for next buyer
+        if not isDuplicate then
+            buyerList.add(newBuyer)
+
+for i=0 to buyerList.size() do
+    print line buyerList(i).description()
+
+// and now the print is complete!

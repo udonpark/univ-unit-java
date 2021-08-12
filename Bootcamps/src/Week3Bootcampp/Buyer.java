@@ -1,9 +1,9 @@
 package Week3Bootcampp;
 
 public class Buyer {
-    int buyerId;
-    String givenName;
-    String familyName;
+    private int buyerId;
+    private String givenName;
+    private String familyName;
     // Comments are in Justifications.txt
 
     public Buyer(int newBuyerId){
@@ -25,6 +25,6 @@ public class Buyer {
     }
 
     public String description(){
-        return Integer.toString(buyerId) + " " + givenName + " " + familyName;
+        return Integer.toString(this.buyerId) + " " + this.givenName + " " + this.familyName;
     }
 }

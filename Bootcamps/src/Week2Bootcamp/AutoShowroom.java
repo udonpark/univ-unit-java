@@ -1,13 +1,13 @@
 package Week2Bootcamp;
 
-import Week3Bootcampp.Car;
+// import Week2Bootcamp.Car;
 
 public class AutoShowroom {
-    Week3Bootcampp.Car[] carArray = new Week3Bootcampp.Car[3];
+    Week2Bootcamp.Car[] carArray = new Week2Bootcamp.Car[3];
 
     public void createCars(){
-        carArray[0] = new Week3Bootcampp.Car("BMW", "XY");
-        carArray[1] = new Week3Bootcampp.Car("Audi", "A8");
+        carArray[0] = new Week2Bootcamp.Car("BMW", "XY");
+        carArray[1] = new Week2Bootcamp.Car("Audi", "A8");
         carArray[2] = new Car("Mercedes", "GLS");
     }
 
@@ -23,7 +23,7 @@ public class AutoShowroom {
 
     public void displayCars(){
         for (int i = 0; i<carArray.length; i++){
-            System.out.println("Car" + " (" + ( i + 1 ) + ") " + carArray[i].description());
+            System.out.println("Car" + " (" + ( i + 1 ) + ") " + carArray[i].getCarDescription());
         }
     }
 }

@@ -10,7 +10,7 @@ public class Car {
     }
 
     public String getCarDescription(){
-        return "Maker:" + make + " and" + " Model:" + model;
+        return "Maker:" + this.make + " and" + " Model:" + this.model;
     }
 // code from task 3:
 // public String getCarDescription(){

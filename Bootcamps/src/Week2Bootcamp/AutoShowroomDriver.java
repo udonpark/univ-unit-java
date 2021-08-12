@@ -1,10 +1,10 @@
 package Week2Bootcamp;
 
-import Week3Bootcampp.AutoShowroom;
+// import Week2Bootcamp.AutoShowroom;
 
 public class AutoShowroomDriver {
     public static void main(String[] args) {
-        Week3Bootcampp.AutoShowroom showroom = new AutoShowroom();
+        Week2Bootcamp.AutoShowroom showroom = new AutoShowroom();
         showroom.printStatus();
     }
 }

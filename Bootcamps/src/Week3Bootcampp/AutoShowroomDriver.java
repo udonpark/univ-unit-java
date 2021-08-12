@@ -1,4 +1,4 @@
-package Week2Bootcamp;
+package Week3Bootcampp;
 
 import Week3Bootcampp.AutoShowroom;
 

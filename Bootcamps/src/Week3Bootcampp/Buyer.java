@@ -20,4 +20,11 @@ public class Buyer {
         this.givenName = newGivenName;
     }
 
+    public void setFamilyName(String newFamilyName){
+        this.familyName = newFamilyName;
+    }
+
+    public String description(){
+        return Integer.toString(buyerId) + " " + givenName + " " + familyName;
+    }
 }

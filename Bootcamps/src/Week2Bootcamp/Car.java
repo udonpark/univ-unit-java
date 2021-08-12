@@ -1,8 +1,8 @@
 package Week2Bootcamp;
 
 public class Car {
-    String make;
-    String model;
+    private String make;
+    private String model;
 
     public Car(String make, String model){
         this.make = make;

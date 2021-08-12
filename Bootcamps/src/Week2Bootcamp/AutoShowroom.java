@@ -3,7 +3,7 @@ package Week2Bootcamp;
 // import Week2Bootcamp.Car;
 
 public class AutoShowroom {
-    Week2Bootcamp.Car[] carArray = new Week2Bootcamp.Car[3];
+    private Week2Bootcamp.Car[] carArray = new Week2Bootcamp.Car[3];
 
     public void createCars(){
         carArray[0] = new Week2Bootcamp.Car("BMW", "XY");

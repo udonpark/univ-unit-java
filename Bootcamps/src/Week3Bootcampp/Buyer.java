@@ -1,7 +1,7 @@
 package Week3Bootcampp;
 
 public class Buyer {
-    private int buyerId;
+    private final int buyerId;
     private String givenName;
     private String familyName;
     // Comments are in Justifications.txt
@@ -19,12 +19,12 @@ public class Buyer {
     public void setGivenName(String newGivenName){
         this.givenName = newGivenName;
     }
-
     public void setFamilyName(String newFamilyName){
         this.familyName = newFamilyName;
     }
+    // these setters are tested. It is also used in the AutoShoroom.
 
     public String description(){
-        return Integer.toString(this.buyerId) + " " + this.givenName + " " + this.familyName;
+        return this.buyerId + " " + this.givenName + " " + this.familyName;
     }
 }

@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Car {
-    private String make;
-    private String model;
-    private ArrayList<Bid> bids = new ArrayList<Bid>();
+    private final String make;
+    private final String model;
+    private final ArrayList<Bid> bids = new ArrayList<>();
 
     public void addBid(Buyer newBuyer, int price, String date){
         this.bids.add(new Bid(nextID(), newBuyer, price, date));

@@ -1,11 +1,26 @@
 package Week3Bootcampp;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class AutoShowroom {
-    private ArrayList<Car> carArray = new ArrayList<Car>();
+    private final ArrayList<Car> carArray = new ArrayList<>();
 
     public void createCars(){
         this.carArray.add(new Car("BMW", "XY"));
+        addBuyerAndBid(0);
+        addBuyerAndBid(0);
+        // Let this first car have 2 bids
+
+        this.carArray.add(new Car("Audi", "A8"));
+        // Let this second car have no bidders
+
+        this.carArray.add(new Car("Mercedes", "GLS"));
+        addBuyerAndBid(2);
+        // Everything is complete!
+
+
+        // Here is my Answer up to Task 6.
+/*        this.carArray.add(new Car("BMW", "XY"));
         Buyer buyer1 = new Buyer(12345, "Herman", "Jin");
         Buyer buyer2 = new Buyer(23677, "Rick", "Johnson");
         this.carArray.get(0).addBid(buyer1, 3200, "13/08/2021");
@@ -23,7 +38,49 @@ public class AutoShowroom {
         // the testing for mutator is complete
 
         this.carArray.add(new Car("Mercedes", "GLS"));
-        // let third car have no bidders
+        // let third car have no bidders*/
+    }
+
+    public void addBuyerAndBid(int index){ // this index represents the index of the car in carArray
+        System.out.println("Please input details for Car ("+(index+1)+") :");
+        String newFirstName = askFirstName();
+        String newLastName = askLastName();
+        int newBuyerId = askBuyerId();
+        int newBidPrice = askBidPrice();
+        String newBidDate = askBidDate();
+
+        Buyer newBuyer = new Buyer(newBuyerId, newFirstName, newLastName);
+        this.carArray.get(index).addBid(newBuyer, newBidPrice, newBidDate);
+        // new Bid and Buyer are created and inserted accordingly
+
+        System.out.println("Thank you for inputs! \n");
+    }
+    public String askFirstName(){
+        // I could use GivenName instead of FirstName, but I have followed specification for this Task only
+        Scanner scan1 = new Scanner(System.in);
+        System.out.print("<STRING> Please Type in Buyer's Given Name: ");
+        return scan1.nextLine();
+    }
+    public String askLastName(){
+        Scanner scan2 = new Scanner(System.in);
+        System.out.print("<STRING> Please Type in Buyer's Family Name: ");
+        return scan2.nextLine();
+    }
+
+    public int askBuyerId(){
+        Scanner scan3 = new Scanner(System.in);
+        System.out.print("<INTEGER> Please Type in Buyer's ID: ");
+        return scan3.nextInt();
+    }
+    public int askBidPrice(){
+        Scanner scan4 = new Scanner(System.in);
+        System.out.print("<INTEGER> Please Type in Bid Price: ");
+        return scan4.nextInt();
+    }
+    public String askBidDate(){
+        Scanner scan1 = new Scanner(System.in);
+        System.out.print("<dd/mm/yyyy> Please Type in Bid Date: ");
+        return scan1.nextLine();
     }
 
     public void printStatus(){

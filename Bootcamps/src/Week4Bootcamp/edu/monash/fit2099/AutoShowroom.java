@@ -28,7 +28,6 @@ public class AutoShowroom {
         buyerMap.put(buyer.getBuyerId(), buyer);
     }
 
-
     public void createSedan() {
         Scanner scan = new Scanner(System.in);
         System.out.println("<STRING> Enter Maker: ");
@@ -37,7 +36,10 @@ public class AutoShowroom {
         String newModel = scan.nextLine();
         System.out.println("<INTEGER> Enter Seat: ");
         int newSeat = Integer.parseInt(scan.nextLine());
-        this.vehicleArray.add(new Sedan(newMaker, newModel, newSeat));
+        Vehicle newSedan = new Sedan(newMaker, newModel, newSeat);
+        this.vehicleArray.add(newSedan);
+        System.out.println(newSedan.description());
+        System.out.println("ID: " + newSedan.getvId());
     }
 
     public void createTruck() {
@@ -50,7 +52,10 @@ public class AutoShowroom {
         int newWheels = Integer.parseInt(scan.nextLine());
         System.out.println("<INTEGER> Enter Capacity: ");
         int newCapacity = Integer.parseInt((scan.nextLine()));
+        Vehicle newTruck = new Truck(newMaker, newModel, newWheels, newCapacity);
         this.vehicleArray.add(new Truck(newMaker, newModel, newWheels, newCapacity));
+        System.out.println(newTruck.description());
+        System.out.println("ID: " + newTruck.getvId());
     }
 
     public void displayFleet() {
@@ -76,6 +81,9 @@ public class AutoShowroom {
         for (int key: buyerMap.keySet()){
             System.out.println(buyerMap.get(key).description());
             System.out.println("\n");
+        }
+        if (buyerMap.size() == 0){
+            System.out.println("Empty!");
         }
     }
 
@@ -128,6 +136,7 @@ public class AutoShowroom {
         String newFamilyName = askLastName();
         Buyer newBuyer = new Buyer(nextID(), newGivenName, newFamilyName);
         addBuyer(newBuyer);
+        System.out.println(newBuyer.description());
     }
 
     public void createBid() {
@@ -135,9 +144,8 @@ public class AutoShowroom {
         int newBuyerId = askBuyerId();
         double newPrice = askBidPrice();
         String newDate = askBidDate();
-        for (int i = 0; i < this.vehicleArray.size(); i++) {
-            Vehicle thisVehicle = this.vehicleArray.get(i);
-            if (thisVehicle.getvId() == newVehicleId){
+        for (Vehicle thisVehicle : this.vehicleArray) {
+            if (thisVehicle.getvId() == newVehicleId) {
                 thisVehicle.addBid(newBuyerId, newPrice, newDate);
                 System.out.println("Bid added!");
                 break;

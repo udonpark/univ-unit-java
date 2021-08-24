@@ -14,9 +14,7 @@ abstract public class Vehicle {
         this.bids.addBid(newBuyer, price, date);
     }
 
-//    public Bid getBid(int i){
-//        return this.bids.bidMap.get(i); // use i to obtain n-th element of the bid
-//    }
+
 
     public int getBidNum(){
         return bids.getSize();
@@ -53,8 +51,4 @@ abstract public class Vehicle {
         return "Maker:" + this.maker + " and" + " Model:" + this.model;
     }
 
-// code from task 3:
-// public String getCarDescription(){
-// return make + model;
-// }
 }

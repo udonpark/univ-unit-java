@@ -1,4 +1,4 @@
-package Week4Bootcamp;
+package Week4Bootcamp.edu.monash.fit2099.buyers;
 
 public class Buyer {
     private final int buyerId;

@@ -1,12 +1,14 @@
-package Week4Bootcamp;
+package Week4Bootcamp.edu.monash.fit2099.bids;
+
+import Week4Bootcamp.edu.monash.fit2099.buyers.Buyer;
 
 public class Bid {
     private int bidId;
     private Buyer buyer;
-    private int bidPrice;
+    private double bidPrice;
     private String bidDate;
 
-    public Bid(int newBidId, Buyer newBuyer, int newBidPrice, String newBidDate){
+    public Bid(int newBidId, Buyer newBuyer, double newBidPrice, String newBidDate){
         this.bidId = newBidId;
         this.buyer = newBuyer;
         this.bidPrice = newBidPrice;
@@ -38,7 +40,7 @@ public class Bid {
         return buyer;
     }
 
-    public int getBidPrice(){
+    public double getBidPrice(){
         return bidPrice;
     }
 

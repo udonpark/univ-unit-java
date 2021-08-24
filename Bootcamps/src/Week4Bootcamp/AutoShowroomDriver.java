@@ -1,10 +1,12 @@
 package Week4Bootcamp;
 
-// import Week4Bootcamp.AutoShowroom;
+// import Week4Bootcamp.edu.monash.fit2099.AutoShowroom;
+
+import Week4Bootcamp.edu.monash.fit2099.AutoShowroom;
 
 public class AutoShowroomDriver {
     public static void main(String[] args) {
-        Week4Bootcamp.AutoShowroom showroom = new AutoShowroom();
+        AutoShowroom showroom = new AutoShowroom();
         showroom.printStatus();
     }
 }

@@ -1,4 +1,8 @@
-package Week4Bootcamp;
+package Week4Bootcamp.edu.monash.fit2099;
+import Week4Bootcamp.edu.monash.fit2099.bids.Bid;
+import Week4Bootcamp.edu.monash.fit2099.buyers.Buyer;
+import Week4Bootcamp.edu.monash.fit2099.vehicles.Vehicle;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,7 +54,7 @@ public class AutoShowroom {
         String newBidDate = askBidDate();
 
         Buyer newBuyer = new Buyer(newBuyerId, newFirstName, newLastName);
-        this.vehicleArray.get(index).addBid(newBuyer, newBidPrice, newBidDate);
+        // this.vehicleArray.get(index).addBid(newBuyer, newBidPrice, newBidDate);
         // new Bid and Buyer are created and inserted accordingly
 
         System.out.println("Thank you for inputs! \n");

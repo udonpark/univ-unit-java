@@ -1,4 +1,4 @@
-package Week4Bootcamp;
+package Week4Bootcamp.edu.monash.fit2099.vehicles;
 
 public class Truck extends Vehicle {
     int capacity;

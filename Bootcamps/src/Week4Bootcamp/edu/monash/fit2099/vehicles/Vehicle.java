@@ -1,23 +1,25 @@
-package Week4Bootcamp;
-import java.util.ArrayList;
+package Week4Bootcamp.edu.monash.fit2099.vehicles;
+import Week4Bootcamp.edu.monash.fit2099.bids.Bid;
+import Week4Bootcamp.edu.monash.fit2099.bids.BidsManager;
+
 import java.util.Random;
 
 abstract public class Vehicle {
     private final String maker;
     private final String model;
     private int vId;
-    private final ArrayList<Bid> bids = new ArrayList<>();
+    private BidsManager bids = new BidsManager();
 
-    public void addBid(Buyer newBuyer, int price, String date){
-        this.bids.add(new Bid(nextID(), newBuyer, price, date));
+    public void addBid(int newBuyer, int price, String date){
+        this.bids.addBid(newBuyer, price, date);
     }
 
     public Bid getBid(int i){
-        return this.bids.get(i); // use i to obtain n-th element of the bid
+        return this.bids.bidMap.get(i); // use i to obtain n-th element of the bid
     }
 
     public int getBidNum(){
-        return this.bids.size();
+        return this.bids.bidMap.size();
     }
 
     public Vehicle(String maker, String model){

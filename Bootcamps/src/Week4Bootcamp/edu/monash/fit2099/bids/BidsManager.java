@@ -11,7 +11,7 @@ public class BidsManager {
     private final HashMap<Integer, Bid> bidMap = new HashMap<>();
 
     public void addBid(int buyerId, double bidPrice, String bidDate){
-        Bid newBid = new Bid(nextID(), AutoShowroom.getBuyer(buyerId), bidPrice, bidDate);
+        Bid newBid = new Bid(nextID(), new Buyer(buyerId), bidPrice, bidDate);
         this.bidMap.put(buyerId, newBid);
     }
 

@@ -13,7 +13,21 @@ import java.util.Scanner;
 // I am re-using some of my functions/codes from last week for efficiency
 public class AutoShowroom {
     private ArrayList<Vehicle> vehicleArray = new ArrayList<>();
-    private Buyer currentBuyer = null;
+    private static HashMap<Integer, Buyer> buyerMap = new HashMap<>();
+
+    public static Buyer getBuyer(int buyerId){
+        for (int key: buyerMap.keySet()){
+            if (key == buyerId) {
+                return buyerMap.get(key);
+            }
+        }
+        return null;
+    }
+
+    public void addBuyer(Buyer buyer){
+        buyerMap.put(buyer.getBuyerId(), buyer);
+    }
+
 
     public void createSedan() {
         Scanner scan = new Scanner(System.in);
@@ -40,11 +54,29 @@ public class AutoShowroom {
     }
 
     public void displayFleet() {
-        ;
+        for (int i = 0; i<this.vehicleArray.size(); i++){
+            Vehicle thisVehicle = this.vehicleArray.get(i);
+            System.out.println("Car" + " (" + ( i + 1 ) + ") " + thisVehicle.description());
+            if (thisVehicle.getBidNum() == 0){
+                System.out.println("No Bids");
+            }
+            else{
+                for (int key: buyerMap.keySet()){
+                    Bid thisBid = thisVehicle.getBid(key);
+                    System.out.println("  Bid ID: " + thisBid.getBidId() + " Price: " + thisBid.getBidPrice() + " Date: " + thisBid.getBidDate());
+                    System.out.println("    Buyer Information: " + thisBid.getBuyer().description());
+        }
+    }
+    System.out.println("\n");
+}
     }
 
     public void displayBuyers() {
-
+        System.out.println("Buyers List: ");
+        for (int key: buyerMap.keySet()){
+            System.out.println(buyerMap.get(key).description());
+            System.out.println("\n");
+        }
     }
 
     public String askFirstName() {
@@ -95,7 +127,7 @@ public class AutoShowroom {
         String newGivenName = askFirstName();
         String newFamilyName = askLastName();
         Buyer newBuyer = new Buyer(nextID(), newGivenName, newFamilyName);
-        //addBuyer(newBuyer);
+        addBuyer(newBuyer);
     }
 
     public void createBid() {
@@ -103,16 +135,20 @@ public class AutoShowroom {
         int newBuyerId = askBuyerId();
         double newPrice = askBidPrice();
         String newDate = askBidDate();
-//        for (int i = 0; i < this.vehicleArray.size(); i++) {
-//            Vehicle thisVehicle = this.vehicleArray.get(i);
-//            System.out.println("Car" + " (" + (i + 1) + ") " + thisVehicle.description());
-//            if (thisVehicle.getBidNum() == 0) {
-//                System.out.println("No Bids");
-//            }
-//        }
+        for (int i = 0; i < this.vehicleArray.size(); i++) {
+            Vehicle thisVehicle = this.vehicleArray.get(i);
+            if (thisVehicle.getvId() == newVehicleId){
+                thisVehicle.addBid(newBuyerId, newPrice, newDate);
+                System.out.println("Bid added!");
+                break;
+            }
+        }
+        System.out.println("Error has occured!");
     }
+
     public void printStatus(){
-        System.out.println("Welcome to FIT2099 Showroom\n\n");
+        System.out.println("----------------------------------------");
+        System.out.println("Welcome to FIT2099 Showroom\n");
         System.out.println("Thank you for visiting FIT2099 Showroom");
     }
 
@@ -128,13 +164,16 @@ public class AutoShowroom {
                     createTruck();
                     break;
                 case 3:
-
+                    displayFleet();
                     break;
                 case 4:
+                    createBuyer();
                     break;
                 case 5:
+                    displayBuyers();
                     break;
                 case 6:
+                    createBid();
                     break;
                 default:
                     System.out.println("Invalid Input!");
@@ -147,6 +186,7 @@ public class AutoShowroom {
         System.out.println("1) New Sedan");
         System.out.println("2) New Truck");
         System.out.println("3) Display Fleet");
+        System.out.println("4) Add Buyer");
         System.out.println("5) List Buyers");
         System.out.println("6) Add Bid");
         System.out.println("7) Exit");

@@ -10,7 +10,7 @@ abstract public class Vehicle {
     private int vId;
     private BidsManager bids = new BidsManager();
 
-    public void addBid(int newBuyer, int price, String date){
+    public void addBid(int newBuyer, double price, String date){
         this.bids.addBid(newBuyer, price, date);
     }
 
@@ -18,9 +18,13 @@ abstract public class Vehicle {
 //        return this.bids.bidMap.get(i); // use i to obtain n-th element of the bid
 //    }
 
-//    public int getBidNum(){
-//        return this.bids.bidMap.size();
-//    }
+    public int getBidNum(){
+        return bids.getSize();
+    }
+
+    public Bid getBid(int key){
+        return bids.getBid(key);
+    }
 
     public Vehicle(String maker, String model){
         this.maker = maker;
@@ -32,6 +36,10 @@ abstract public class Vehicle {
         this.maker = maker;
         this.model = model;
         this.vId = vId;
+    }
+
+    public int getvId(){
+        return this.vId;
     }
 
     public int nextID() {

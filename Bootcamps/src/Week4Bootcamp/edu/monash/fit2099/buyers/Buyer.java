@@ -23,6 +23,7 @@ public class Buyer {
         this.familyName = newFamilyName;
     }
     // these setters are tested. It is also used in the AutoShoroom.
+    public int getBuyerId(){ return this.buyerId; }
 
     public String description(){
         return this.buyerId + " " + this.givenName + " " + this.familyName;

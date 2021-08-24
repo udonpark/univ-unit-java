@@ -14,17 +14,18 @@ abstract public class Vehicle {
         this.bids.addBid(newBuyer, price, date);
     }
 
-    public Bid getBid(int i){
-        return this.bids.bidMap.get(i); // use i to obtain n-th element of the bid
-    }
+//    public Bid getBid(int i){
+//        return this.bids.bidMap.get(i); // use i to obtain n-th element of the bid
+//    }
 
-    public int getBidNum(){
-        return this.bids.bidMap.size();
-    }
+//    public int getBidNum(){
+//        return this.bids.bidMap.size();
+//    }
 
     public Vehicle(String maker, String model){
         this.maker = maker;
         this.model = model;
+        this.vId = nextID();
     }
 
     public Vehicle(String maker, String model, int vId){

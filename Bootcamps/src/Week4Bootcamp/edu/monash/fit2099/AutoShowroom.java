@@ -12,16 +12,17 @@ import java.util.Scanner;
 
 // I am re-using some of my functions/codes from last week for efficiency
 public class AutoShowroom {
-    private ArrayList<Vehicle> vehicleArray = new ArrayList<>();
-    private static HashMap<Integer, Buyer> buyerMap = new HashMap<>();
+    private final ArrayList<Vehicle> vehicleArray = new ArrayList<>();
+    private final HashMap<Integer, Buyer> buyerMap = new HashMap<>();
 
-    public static Buyer getBuyer(int buyerId){
-        for (int key: buyerMap.keySet()){
-            if (key == buyerId) {
-                return buyerMap.get(key);
-            }
-        }
-        return null;
+    public Buyer getBuyer(int buyerId){
+        return this.buyerMap.get(buyerId);
+//        for (int key: buyerMap.keySet()){
+//            if (key == buyerId) {
+//                return buyerMap.get(key);
+//            }
+//        }
+//        return null;
     }
 
     public void addBuyer(Buyer buyer){
@@ -61,15 +62,17 @@ public class AutoShowroom {
     public void displayFleet() {
         for (int i = 0; i<this.vehicleArray.size(); i++){
             Vehicle thisVehicle = this.vehicleArray.get(i);
-            System.out.println("Car" + " (" + ( i + 1 ) + ") " + thisVehicle.description());
+            System.out.println("Car" + " (" + ( i + 1 ) + ") " + thisVehicle.description() + " ID: " + thisVehicle.getvId());
             if (thisVehicle.getBidNum() == 0){
                 System.out.println("No Bids");
             }
             else{
                 for (int key: buyerMap.keySet()){
                     Bid thisBid = thisVehicle.getBid(key);
-                    System.out.println("  Bid ID: " + thisBid.getBidId() + " Price: " + thisBid.getBidPrice() + " Date: " + thisBid.getBidDate());
-                    System.out.println("    Buyer Information: " + thisBid.getBuyer().description());
+                    if (thisBid != null) {
+                        System.out.println("  Bid ID: " + thisBid.getBidId() + " Price: " + thisBid.getBidPrice() + " Date: " + thisBid.getBidDate());
+                        System.out.println("    Buyer Information: " + thisBid.getBuyer().description());
+                    }
         }
     }
     System.out.println("\n");
@@ -103,13 +106,13 @@ public class AutoShowroom {
     public int askVehicleId() {
         Scanner scan = new Scanner(System.in);
         System.out.print("<INTEGER> Enter Vehicle's ID: ");
-        return scan.nextInt();
+        return Integer.parseInt(scan.nextLine());
     }
 
     public int askBuyerId() {
         Scanner scan3 = new Scanner(System.in);
         System.out.print("<INTEGER> Enter Buyer's ID: ");
-        return scan3.nextInt();
+        return Integer.parseInt(scan3.nextLine());
     }
 
     public double askBidPrice() {
@@ -145,13 +148,13 @@ public class AutoShowroom {
         double newPrice = askBidPrice();
         String newDate = askBidDate();
         for (Vehicle thisVehicle : this.vehicleArray) {
+            System.out.println(thisVehicle.getvId());
             if (thisVehicle.getvId() == newVehicleId) {
-                thisVehicle.addBid(newBuyerId, newPrice, newDate);
+                thisVehicle.addBidBuyer(getBuyer(newBuyerId), newPrice, newDate);
                 System.out.println("Bid added!");
                 break;
             }
         }
-        System.out.println("Error has occured!");
     }
 
     public void printStatus(){
@@ -161,6 +164,7 @@ public class AutoShowroom {
     }
 
     public void showroom(){
+        printStatus();
         int command;
         do{
             command = selectMenu();
@@ -183,6 +187,8 @@ public class AutoShowroom {
                 case 6:
                     createBid();
                     break;
+                case 7:
+                    break;
                 default:
                     System.out.println("Invalid Input!");
             }
@@ -198,7 +204,6 @@ public class AutoShowroom {
         System.out.println("5) List Buyers");
         System.out.println("6) Add Bid");
         System.out.println("7) Exit");
-        int command = scanner.nextInt();
-        return command;
+        return scanner.nextInt();
     }
 }

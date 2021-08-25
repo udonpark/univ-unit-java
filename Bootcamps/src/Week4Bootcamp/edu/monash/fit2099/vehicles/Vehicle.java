@@ -1,19 +1,22 @@
 package Week4Bootcamp.edu.monash.fit2099.vehicles;
 import Week4Bootcamp.edu.monash.fit2099.bids.Bid;
 import Week4Bootcamp.edu.monash.fit2099.bids.BidsManager;
+import Week4Bootcamp.edu.monash.fit2099.buyers.Buyer;
 
 import java.util.Random;
 
 abstract public class Vehicle {
     private final String maker;
     private final String model;
-    private int vId;
-    private BidsManager bids = new BidsManager();
+    private final int vId;
+    private final BidsManager bids = new BidsManager();
 
-    public void addBid(int newBuyer, double price, String date){
-        this.bids.addBid(newBuyer, price, date);
+//    public void addBid(int newBuyer, double price, String date){
+//        this.bids.addBid(newBuyer, price, date);
+//    }
+    public void addBidBuyer(Buyer newBuyer, double price, String date){
+        this.bids.addBidBuyer(newBuyer, price, date);
     }
-
 
 
     public int getBidNum(){

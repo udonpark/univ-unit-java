@@ -1,18 +1,29 @@
 package Week4Bootcamp.edu.monash.fit2099.bids;
 
-import Week4Bootcamp.edu.monash.fit2099.AutoShowroom;
-import Week4Bootcamp.edu.monash.fit2099.bids.Bid;
 import Week4Bootcamp.edu.monash.fit2099.buyers.Buyer;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class BidsManager {
-    private final HashMap<Integer, Bid> bidMap = new HashMap<>();
+    private final HashMap<Integer, Bid> bidMap;
+    public BidsManager(){
+        bidMap = new HashMap<>();
+    }
 
-    public void addBid(int buyerId, double bidPrice, String bidDate){
-        Bid newBid = new Bid(nextID(), AutoShowroom.getBuyer(buyerId), bidPrice, bidDate);
-        this.bidMap.put(buyerId, newBid);
+//    public void addBid(int buyerId, double bidPrice, String bidDate){
+//        System.out.println(AutoShowroom.getBuyer(buyerId));
+//        Bid newBid = new Bid(nextID(), AutoShowroom.getBuyer(buyerId), bidPrice, bidDate);
+//        this.bidMap.put(buyerId, newBid);
+//    }
+
+    public void addBidBuyer(Buyer buyer, double bidPrice, String bidDate){
+        Bid newBid = new Bid(nextID(), buyer, bidPrice, bidDate);
+        this.bidMap.put(buyer.getBuyerId(), newBid);
+    }
+
+    public Object getHash(){
+        return bidMap;
     }
 
     public Bid getBid(int buyerId){

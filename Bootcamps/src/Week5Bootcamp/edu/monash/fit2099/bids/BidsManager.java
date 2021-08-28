@@ -2,10 +2,17 @@ package Week5Bootcamp.edu.monash.fit2099.bids;
 
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
 import Week5Bootcamp.edu.monash.fit2099.exceptions.BidException;
+import Week5Bootcamp.edu.monash.fit2099.vehicles.Vehicle;
 
 import java.util.HashMap;
 import java.util.Random;
-
+/**
+ * This is a BidManager class
+ * @see Vehicle
+ * @author Yo Kogure
+ * @version 1.1
+ * @since 29/08/2021
+ */
 public class BidsManager {
     private final HashMap<Integer, Bid> bidMap;
     public BidsManager(){

@@ -1,19 +1,30 @@
 package Week5Bootcamp.edu.monash.fit2099.buyers;
 
+import java.util.Random;
+
 public class Buyer {
     private final int buyerId;
     private String givenName;
     private String familyName;
     // Comments are in Justifications.txt
 
-    public Buyer(int newBuyerId){
-        this.buyerId = newBuyerId;
+    public Buyer(){
+        this.buyerId = nextID();
     }
 
     public Buyer(int newBuyerId, String newGivenName, String newFamilyName){
         this.buyerId = newBuyerId;
         this.givenName = newGivenName;
         this.familyName = newFamilyName;
+    }
+
+    public static Buyer getInstance(String givenName, String familyName){
+        Buyer newBuyer = new Buyer();
+        if (newBuyer.setGivenName(givenName) && newBuyer.setFamilyName(familyName)){
+            return newBuyer;
+        }else{
+            return null;
+        }
     }
 
     public boolean setGivenName(String givenName) {
@@ -38,5 +49,12 @@ public class Buyer {
 
     public String description(){
         return this.buyerId + " " + this.givenName + " " + this.familyName;
+    }
+
+    public int nextID() {
+        Random r = new Random();
+        int low = 10000;
+        int high = 99999;
+        return (r.nextInt(high - low) + low);
     }
 }

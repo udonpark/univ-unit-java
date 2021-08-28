@@ -1,6 +1,7 @@
 package Week5Bootcamp.edu.monash.fit2099.bids;
 
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.BidException;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -18,8 +19,13 @@ public class BidsManager {
 //    }
 
     public void addBidBuyer(Buyer buyer, double bidPrice, String bidDate){
-        Bid newBid = new Bid(nextID(), buyer, bidPrice, bidDate);
-        this.bidMap.put(buyer.getBuyerId(), newBid);
+        try {
+            Bid newBid = new Bid(nextID(), buyer, bidPrice, bidDate);
+            this.bidMap.put(buyer.getBuyerId(), newBid);
+            System.out.println("Bid added!");
+        }catch (BidException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public Object getHash(){

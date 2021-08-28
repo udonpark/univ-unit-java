@@ -1,6 +1,9 @@
 package Week5Bootcamp.edu.monash.fit2099;
 import Week5Bootcamp.edu.monash.fit2099.bids.Bid;
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.SedanException;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.TruckException;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.VehicleException;
 import Week5Bootcamp.edu.monash.fit2099.vehicles.Sedan;
 import Week5Bootcamp.edu.monash.fit2099.vehicles.Truck;
 import Week5Bootcamp.edu.monash.fit2099.vehicles.Vehicle;
@@ -30,33 +33,66 @@ public class AutoShowroom {
     }
 
     public void createSedan() {
+        int newSeat = 0;
         Scanner scan = new Scanner(System.in);
         System.out.println("<STRING> Enter Maker: ");
         String newMaker = scan.nextLine();
         System.out.println("<STRING> Enter Mode: ");
         String newModel = scan.nextLine();
         System.out.println("<INTEGER> Enter Seat: ");
-        int newSeat = Integer.parseInt(scan.nextLine());
-        Vehicle newSedan = new Sedan(newMaker, newModel, newSeat);
-        this.vehicleArray.add(newSedan);
-        System.out.println(newSedan.description());
-        System.out.println("ID: " + newSedan.getvId());
+        try {
+            newSeat = Integer.parseInt(scan.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println("Please type in an integer for Seat!");
+            return;
+        }
+        try {
+            Sedan newSedan = new Sedan(newMaker, newModel, newSeat);
+            this.vehicleArray.add(newSedan);
+            System.out.println(newSedan.description());
+            System.out.println("ID: " + newSedan.getvId());
+        }
+        catch (SedanException e){
+            System.out.println(e.getMessage());
+        }
+        catch (VehicleException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void createTruck() {
+        int newWheels, newCapacity;
         Scanner scan = new Scanner(System.in);
         System.out.println("<STRING> Enter Maker: ");
         String newMaker = scan.nextLine();
         System.out.println("<STRING> Enter Mode: ");
         String newModel = scan.nextLine();
         System.out.println("<INTEGER> Enter Wheels: ");
-        int newWheels = Integer.parseInt(scan.nextLine());
+        try {
+            newWheels = Integer.parseInt(scan.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println("Please type in an Integer for Wheels!");
+            return;
+        }
         System.out.println("<INTEGER> Enter Capacity: ");
-        int newCapacity = Integer.parseInt((scan.nextLine()));
-        Vehicle newTruck = new Truck(newMaker, newModel, newWheels, newCapacity);
-        this.vehicleArray.add(new Truck(newMaker, newModel, newWheels, newCapacity));
-        System.out.println(newTruck.description());
-        System.out.println("ID: " + newTruck.getvId());
+        try {
+            newCapacity = Integer.parseInt((scan.nextLine()));
+        } catch (NumberFormatException e){
+            System.out.println("Please type in an Integer for Capacity!");
+            return;
+        }
+        try {
+            Truck newTruck = new Truck(newMaker, newModel, newCapacity, newWheels);
+            this.vehicleArray.add(newTruck);
+            System.out.println(newTruck.description());
+            System.out.println("ID: " + newTruck.getvId());
+        }
+        catch (TruckException e){
+            System.out.println(e.getMessage());
+        }
+        catch (VehicleException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void displayFleet() {
@@ -106,13 +142,23 @@ public class AutoShowroom {
     public int askVehicleId() {
         Scanner scan = new Scanner(System.in);
         System.out.print("<INTEGER> Enter Vehicle's ID: ");
-        return Integer.parseInt(scan.nextLine());
+        try {
+            return Integer.parseInt(scan.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println("Please type in an Integer for Vehicle ID!");
+            return 0;
+        }
     }
 
     public int askBuyerId() {
         Scanner scan3 = new Scanner(System.in);
         System.out.print("<INTEGER> Enter Buyer's ID: ");
-        return Integer.parseInt(scan3.nextLine());
+        try {
+            return Integer.parseInt(scan3.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println("Please type in an Integer for Buyer ID!");
+            return 0;
+        }
     }
 
     public double askBidPrice() {
@@ -137,21 +183,26 @@ public class AutoShowroom {
     public void createBuyer() {
         String newGivenName = askFirstName();
         String newFamilyName = askLastName();
-        Buyer newBuyer = new Buyer(nextID(), newGivenName, newFamilyName);
-        addBuyer(newBuyer);
-        System.out.println(newBuyer.description());
+        Buyer buyer = Buyer.getInstance(newGivenName, newFamilyName);
+        if (buyer != null) {
+            addBuyer(buyer);
+            System.out.println(buyer.description());
+        } else
+            System.out.println("Something wrong with the buyer's values!!!");
     }
 
     public void createBid() {
         int newVehicleId = askVehicleId();
         int newBuyerId = askBuyerId();
+        if (newVehicleId == 0 || newBuyerId == 0){
+            return;
+        }
         double newPrice = askBidPrice();
         String newDate = askBidDate();
         for (Vehicle thisVehicle : this.vehicleArray) {
             System.out.println(thisVehicle.getvId());
             if (thisVehicle.getvId() == newVehicleId) {
                 thisVehicle.addBidBuyer(getBuyer(newBuyerId), newPrice, newDate);
-                System.out.println("Bid added!");
                 break;
             }
         }

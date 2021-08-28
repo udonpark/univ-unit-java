@@ -46,12 +46,12 @@ public class Bid {
         int temp;
 
         // check for dd first, in dd/mm/yyyy format
+        // I am also assuming that 9/2/2010 is not accepted, but 09/02/2010 is accepted in my convention.
         // when converting string integer, I have referred to:
         // https://stackoverflow.com/questions/5585779/how-do-i-convert-a-string-to-an-int-in-java
         try {
             temp = Integer.parseInt(date.substring(0, 2));
-        }
-        catch (NumberFormatException e)
+        } catch (NumberFormatException e)
         {
             temp = -1;
         }
@@ -60,9 +60,8 @@ public class Bid {
         }
         // check mm
         try {
-            temp = Integer.parseInt(date.substring(3, 2));
-        }
-        catch (NumberFormatException e)
+            temp = Integer.parseInt(date.substring(3, 5));
+        } catch (NumberFormatException e)
         {
             temp = -1;
         }
@@ -71,18 +70,16 @@ public class Bid {
         }
         // check yyyy
         try {
-            temp = Integer.parseInt(date.substring(6, 4));
-        }
-        catch (NumberFormatException e)
+            temp = Integer.parseInt(date.substring(6));
+        } catch (NumberFormatException e)
         {
             temp = -1;
         }
-        if (temp >= 1 && temp <= 31){
+        if (temp >= 1930 && temp <= 2021){
             yyyy = true;
         }
 
-
-        if(dd && mm && yyyy && (date.substring(2, 1) == "/") && (date.substring(5, 1) == "/")){
+        if(dd && mm && yyyy && (date.charAt(2) == '/') && (date.charAt(5) == '/')){
             isValid=true;
             this.bidDate= date;
         }

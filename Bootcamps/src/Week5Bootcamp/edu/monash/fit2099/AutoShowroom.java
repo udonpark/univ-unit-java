@@ -214,6 +214,125 @@ public class AutoShowroom {
         System.out.println("Thank you for visiting FIT2099 Showroom");
     }
 
+    public Vehicle getVehicle(int vehicleId) {
+        for (Vehicle thisVehicle : this.vehicleArray) {
+            if (thisVehicle.getvId() == vehicleId) {
+                return thisVehicle;
+            }
+        }
+        return null;
+    }
+
+    public void getSmallestBid(int vehicleId){
+        if (getVehicle(vehicleId) == null){
+            System.out.println("Wrong Vehicle ID!");
+        }
+        else{
+            double minBidValue = Double.POSITIVE_INFINITY;
+            Bid minBid = null;
+            Vehicle thisVehicle = getVehicle(vehicleId);
+            for (int key: buyerMap.keySet()) {
+                Bid thisBid = thisVehicle.getBid(key);
+                if (thisBid == null){
+                    continue;
+                }
+                if (thisBid.getBidPrice() <= minBidValue){
+                    minBid = thisBid;
+                    minBidValue = thisBid.getBidPrice();
+                }
+            }
+            if (minBid == null){
+                System.out.println("No bid for this Vehicle!");
+            }
+            else{
+                System.out.println("*Smallest Bid*!:\n");
+                System.out.println("  Bid ID: " + minBid.getBidId() + " Price: " + minBid.getBidPrice() + " Date: " + minBid.getBidDate());
+                System.out.println("    Buyer Information: " + minBid.getBuyer().description());
+            }
+        }
+    }
+
+    public void getLargestBid(int vehicleId) {
+        if (getVehicle(vehicleId) == null) {
+            System.out.println("Wrong Vehicle ID!");
+        } else {
+            double maxBidValue = Double.NEGATIVE_INFINITY;
+            Bid maxBid = null;
+            Vehicle thisVehicle = getVehicle(vehicleId);
+            for (int key : buyerMap.keySet()) {
+                Bid thisBid = thisVehicle.getBid(key);
+                if (thisBid == null){
+                    continue;
+                }
+                if (thisBid.getBidPrice() >= maxBidValue) {
+                    maxBid = thisBid;
+                    maxBidValue = thisBid.getBidPrice();
+                }
+            }
+            if (maxBid == null) {
+                System.out.println("No bid for this Vehicle!");
+            } else {
+                System.out.println("*Largest Bid*!:\n");
+                System.out.println("  Bid ID: " + maxBid.getBidId() + " Price: " + maxBid.getBidPrice() + " Date: " + maxBid.getBidDate());
+                System.out.println("    Buyer Information: " + maxBid.getBuyer().description());
+            }
+        }
+    }
+
+    public void deleteBid(int bidId) {
+        for (Vehicle thisVehicle : vehicleArray) {
+            for (int key : buyerMap.keySet()) {
+                Bid thisBid = thisVehicle.getBid(key);
+                if (thisBid.getBidId() == bidId){
+                    System.out.println("Item found!\n");
+                    thisVehicle.removeBidBuyer(key);
+                    System.out.println(("Successfully deleted!\n"));
+                    return;
+                }
+            }
+        }
+        System.out.println("Item not found!\n");
+    }
+
+    public void askSmallest(){
+        int input;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("<INTEGER> Type in Vehicle ID");
+        try {
+            input = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println("Please type in Integer!");
+            return;
+        }
+        getSmallestBid(input);
+    }
+
+    public void askLargest(){
+        int input;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("<INTEGER> Type in Vehicle ID");
+        try {
+            input = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println("Please type in Integer!");
+            return;
+        }
+        getLargestBid(input);
+    }
+
+    public void askDelete(){
+        int input;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("<INTEGER> Type in Bid ID to delete!");
+        try {
+            input = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e){
+            System.out.println("Please type in Integer!");
+            return;
+        }
+        deleteBid(input);
+    }
+
     public void showroom(){
         printStatus();
         int command;
@@ -239,11 +358,20 @@ public class AutoShowroom {
                     createBid();
                     break;
                 case 7:
+                    askLargest();
+                    break;
+                case 8:
+                    askSmallest();
+                    break;
+                case 9:
+                    askDelete();
+                    break;
+                case 10:
                     break;
                 default:
                     System.out.println("Invalid Input!");
             }
-        } while (command != 7);
+        } while (command != 10);
     }
 
     public int selectMenu(){
@@ -254,7 +382,10 @@ public class AutoShowroom {
         System.out.println("4) Add Buyer");
         System.out.println("5) List Buyers");
         System.out.println("6) Add Bid");
-        System.out.println("7) Exit");
+        System.out.println("7) Show the Best Bid");
+        System.out.println("8) Show the Worst Bid");
+        System.out.println("9) Delete Bid");
+        System.out.println("10) Exit");
         return scanner.nextInt();
     }
 }

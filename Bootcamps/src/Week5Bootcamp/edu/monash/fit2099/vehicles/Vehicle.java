@@ -19,6 +19,9 @@ abstract public class Vehicle {
         this.bids.addBidBuyer(newBuyer, price, date);
     }
 
+    public void removeBidBuyer(int buyerId){
+        this.bids.removeBidBuyer(buyerId);
+    }
 
     public int getBidNum(){
         return bids.getSize();

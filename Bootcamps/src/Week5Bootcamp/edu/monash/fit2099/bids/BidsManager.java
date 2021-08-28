@@ -28,6 +28,10 @@ public class BidsManager {
         }
     }
 
+    public void removeBidBuyer(int buyerId){
+        this.bidMap.remove(buyerId);
+    }
+
     public Object getHash(){
         return bidMap;
     }

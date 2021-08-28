@@ -1,6 +1,7 @@
 package Week5Bootcamp.edu.monash.fit2099.bids;
 
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.BidException;
 
 
 public class Bid {
@@ -9,11 +10,14 @@ public class Bid {
     private double bidPrice;
     private String bidDate;
 
-    public Bid(int newBidId, Buyer newBuyer, double newBidPrice, String newBidDate){
-        this.bidId = newBidId;
-        this.buyer = newBuyer;
-        this.bidPrice = newBidPrice;
-        this.bidDate = newBidDate;
+    public Bid(int newBidId, Buyer newBuyer, double newBidPrice, String newBidDate) throws BidException {
+        if (setBidPrice(newBidPrice) && setDate(newBidDate)) {
+            this.bidId = newBidId;
+            this.buyer = newBuyer;
+        }
+        else{
+            throw new BidException("Incorrect Price or Date");
+        }
     }
     // I have made sure that these constuctors and mutator/acceesors do work as intended.
     // They are also shown in the AutoShowroom in Task 5.
@@ -25,7 +29,7 @@ public class Bid {
         this.buyer = newBuyer;
     }
 
-    public boolean setBidPrice(int price) {
+    public boolean setBidPrice(double price) {
         boolean isValid = false;
         if(price >= 0){
             isValid=true;
@@ -85,9 +89,6 @@ public class Bid {
         return isValid;
     }
 
-    public void setBidDate(String newBidDate){
-        this.bidDate = newBidDate;
-    }
 
     public int getBidId(){
         return bidId;

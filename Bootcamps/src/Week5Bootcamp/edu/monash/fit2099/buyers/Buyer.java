@@ -12,11 +12,11 @@ public class Buyer {
         this.buyerId = nextID();
     }
 
-    private Buyer(int newBuyerId, String newGivenName, String newFamilyName){
-        this.buyerId = newBuyerId;
-        this.givenName = newGivenName;
-        this.familyName = newFamilyName;
-    }
+//    private Buyer(int newBuyerId, String newGivenName, String newFamilyName){
+//        this.buyerId = newBuyerId;
+//        this.givenName = newGivenName;
+//        this.familyName = newFamilyName;
+//    }
 
     public static Buyer getInstance(String givenName, String familyName){
         Buyer newBuyer = new Buyer();

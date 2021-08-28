@@ -10,7 +10,6 @@ import Week5Bootcamp.edu.monash.fit2099.vehicles.Vehicle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Scanner;
 
 // I am re-using some of my functions/codes from last week for efficiency
@@ -112,7 +111,7 @@ public class AutoShowroom {
         }
     }
     System.out.println("\n");
-}
+        }
     }
 
     public void displayBuyers() {
@@ -171,13 +170,6 @@ public class AutoShowroom {
         Scanner scan1 = new Scanner(System.in);
         System.out.print("<dd/mm/yyyy> Enter Bid Date: ");
         return scan1.nextLine();
-    }
-
-    public int nextID() {
-        Random r = new Random();
-        int low = 10000;
-        int high = 99999;
-        return (r.nextInt(high - low) + low);
     }
 
     public void createBuyer() {

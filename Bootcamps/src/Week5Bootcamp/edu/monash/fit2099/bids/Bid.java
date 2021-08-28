@@ -21,9 +21,10 @@ public class Bid {
     }
     // I have made sure that these constuctors and mutator/acceesors do work as intended.
     // They are also shown in the AutoShowroom in Task 5.
-    public void setBidId(int newBidId){
-        this.bidId = newBidId;
-    }
+
+//    public void setBidId(int newBidId){
+//        this.bidId = newBidId;
+//    }
 
     public void setBuyer(Buyer newBuyer){
         this.buyer = newBuyer;

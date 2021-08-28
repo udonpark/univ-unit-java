@@ -32,10 +32,6 @@ public class BidsManager {
         this.bidMap.remove(buyerId);
     }
 
-    public Object getHash(){
-        return bidMap;
-    }
-
     public Bid getBid(int buyerId){
         return bidMap.get(buyerId);
     }

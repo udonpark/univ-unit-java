@@ -1,12 +1,20 @@
 package Week5Bootcamp.edu.monash.fit2099.vehicles;
 
+import Week5Bootcamp.edu.monash.fit2099.exceptions.TruckException;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.VehicleException;
+
 public class Truck extends Vehicle {
     private int capacity;
     private int wheels;
-    public Truck(String maker, String model, int capacity, int wheels){
+    public Truck(String maker, String model, int capacity, int wheels) throws VehicleException, TruckException {
         super(maker, model);
-        this.capacity = capacity;
-        this.wheels = wheels;
+        if(setCapacity(capacity) && setWheels(wheels)) {
+            this.capacity = capacity;
+            this.wheels = wheels;
+        }
+        else{
+            throw new TruckException("Incorrect Capacity OR Wheels");
+        }
     }
 
     public boolean setCapacity(int capacity) {

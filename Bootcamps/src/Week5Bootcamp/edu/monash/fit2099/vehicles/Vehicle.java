@@ -2,6 +2,7 @@ package Week5Bootcamp.edu.monash.fit2099.vehicles;
 import Week5Bootcamp.edu.monash.fit2099.bids.Bid;
 import Week5Bootcamp.edu.monash.fit2099.bids.BidsManager;
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.VehicleException;
 
 import java.util.Random;
 
@@ -27,17 +28,19 @@ abstract public class Vehicle {
         return bids.getBid(key);
     }
 
-    public Vehicle(String maker, String model){
-        this.maker = maker;
-        this.model = model;
-        this.vId = nextID();
+    public Vehicle(String maker, String model) throws VehicleException {
+        if (setMaker(maker) && setModel(model)) {
+            vId = nextID();
+        } else {
+            throw new VehicleException("Incorrect Maker OR Model");
+        }
     }
-
-    public Vehicle(String maker, String model, int vId){
-        this.maker = maker;
-        this.model = model;
-        this.vId = vId;
-    }
+// I am commenting below out for this bootcamp, since we have only been using the former method
+//    public Vehicle(String maker, String model, int vId){
+//        this.maker = maker;
+//        this.model = model;
+//        this.vId = vId;
+//    }
 
     public boolean setMaker(String maker) {
         boolean isValid=false;

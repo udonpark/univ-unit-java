@@ -1,0 +1,30 @@
+32134541 FIT2099
+Bootcamp 5, Yo Kogure
+
+Here is my approach on the pros and cons of two approaches introduced to handle invalid data.
+
+Public Static Factory Method:
+One good merit of this approach is that it does not have ot throw exception; you don't have to
+create customized exceptions such as VehicleException or SedanException.
+For example, If I am designing a short program and just need to check for one invalid data,
+then I could take this approach as a better ease of use. It consists of multiple basic functions
+such as constructor, if statement, mutator and accessor etc.
+This also protects constructor by keeping it public.
+
+However, the disadvantage is that the capability of this is not as high. If we were to make
+larger projects, and I need to formally record all Exceptions and set-up more organized software,
+then Exception approach is superior than Static Factory Method, in my opinion.
+
+Exception Approach:
+An advantage of this is that although it required creating a package and some blueprint designs
+by inheriting from Exception class multiple times, in a long run this approach came in handy.
+Although ease of use might seem confusing at first, once everything is organized,
+we can keep track of the errors/exceptions, and since we have name and conditions set up for each,
+we can differentiate and customize our response to them.
+And the capability is higher for this approach too, because we are utilizing throwing exceptions,
+trying and catching exceptions, which contributes to letting the user know what error actually
+happened.
+
+As a conclusion, they both have pros and cons, and when we are writing a short piece of code for hobby,
+former approach is fine. But if we are working for a robust platform, our Exception approach
+is the way to go.

@@ -8,11 +8,11 @@ public class Buyer {
     private String familyName;
     // Comments are in Justifications.txt
 
-    public Buyer(){
+    private Buyer(){
         this.buyerId = nextID();
     }
 
-    public Buyer(int newBuyerId, String newGivenName, String newFamilyName){
+    private Buyer(int newBuyerId, String newGivenName, String newFamilyName){
         this.buyerId = newBuyerId;
         this.givenName = newGivenName;
         this.familyName = newFamilyName;

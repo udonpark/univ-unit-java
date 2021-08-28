@@ -283,6 +283,9 @@ public class AutoShowroom {
         for (Vehicle thisVehicle : vehicleArray) {
             for (int key : buyerMap.keySet()) {
                 Bid thisBid = thisVehicle.getBid(key);
+                if (thisBid == null){
+                    continue;
+                }
                 if (thisBid.getBidId() == bidId){
                     System.out.println("Item found!\n");
                     thisVehicle.removeBidBuyer(key);

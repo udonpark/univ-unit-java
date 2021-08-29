@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"Week5Bootcamp"},{"l":"Week5Bootcamp.edu.monash.fit2099"},{"l":"Week5Bootcamp.edu.monash.fit2099.bids"},{"l":"Week5Bootcamp.edu.monash.fit2099.buyers"},{"l":"Week5Bootcamp.edu.monash.fit2099.exceptions"},{"l":"Week5Bootcamp.edu.monash.fit2099.vehicles"}]

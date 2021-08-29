@@ -1,5 +1,6 @@
 package Week5Bootcamp.edu.monash.fit2099;
 import Week5Bootcamp.edu.monash.fit2099.bids.Bid;
+import Week5Bootcamp.edu.monash.fit2099.bids.BidsManager;
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
 import Week5Bootcamp.edu.monash.fit2099.exceptions.SedanException;
 import Week5Bootcamp.edu.monash.fit2099.exceptions.TruckException;
@@ -12,11 +13,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * This is a AutoShowroom class. This class combines almost all classes implemented
+ * in this project. It also has some custom ArrayList and HashMap to allow extensions
+ * @see BidsManager
+ * @see Buyer
+ * @author Yo Kogure
+ * @version 1.1
+ * @since 29/08/2021
+ */
 // I am re-using some of my functions/codes from last week for efficiency
 public class AutoShowroom {
+    /**
+     * vehicleArrays stores all vehicle that were input so far into ArrayList
+     * buyerMap is a HashMap containing the buyers id and buyer object so far
+     */
     private final ArrayList<Vehicle> vehicleArray = new ArrayList<>();
     private final HashMap<Integer, Buyer> buyerMap = new HashMap<>();
 
+    /**
+     * getter for Buyer
+     * @param buyerId buyer id, integer
+     * @return corresponding Buyer object, has chance to return null which we will handle later
+     */
     public Buyer getBuyer(int buyerId){
         return this.buyerMap.get(buyerId);
 //        for (int key: buyerMap.keySet()){
@@ -27,10 +46,17 @@ public class AutoShowroom {
 //        return null;
     }
 
+    /**
+     * adds buyer to the buyerMap
+     * @param buyer Buyer object
+     */
     public void addBuyer(Buyer buyer){
         buyerMap.put(buyer.getBuyerId(), buyer);
     }
 
+    /**
+     * creates Sedan object from the input
+     */
     public void createSedan() {
         int newSeat = 0;
         Scanner scan = new Scanner(System.in);
@@ -59,6 +85,9 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * creates Truck object from the input
+     */
     public void createTruck() {
         int newWheels, newCapacity;
         Scanner scan = new Scanner(System.in);
@@ -94,6 +123,10 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * Displays all information of the current system, including
+     * all cars and all bids on them
+     */
     public void displayFleet() {
         for (int i = 0; i<this.vehicleArray.size(); i++){
             Vehicle thisVehicle = this.vehicleArray.get(i);
@@ -114,6 +147,9 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * displays all buyers information
+     */
     public void displayBuyers() {
         System.out.println("Buyers List: ");
         for (int key: buyerMap.keySet()){
@@ -125,6 +161,10 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * helper method to ask for first name
+     * @return string, scanned by the scanner
+     */
     public String askFirstName() {
         // I could use GivenName instead of FirstName, but I have followed specification for this Task only
         Scanner scan1 = new Scanner(System.in);
@@ -132,12 +172,20 @@ public class AutoShowroom {
         return scan1.nextLine();
     }
 
+    /**
+     * helper method to ask for last name
+     * @return string, scanned by the scanner
+     */
     public String askLastName() {
         Scanner scan2 = new Scanner(System.in);
         System.out.print("<STRING> Enter Buyer's Family Name: ");
         return scan2.nextLine();
     }
 
+    /**
+     * helper method to ask for vehicle ID
+     * @return integer ID of vehicle which were typed by the user
+     */
     public int askVehicleId() {
         Scanner scan = new Scanner(System.in);
         System.out.print("<INTEGER> Enter Vehicle's ID: ");
@@ -149,6 +197,10 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * helper method to ask for buyer ID
+     * @return integer ID of buyer which is typed by the user
+     */
     public int askBuyerId() {
         Scanner scan3 = new Scanner(System.in);
         System.out.print("<INTEGER> Enter Buyer's ID: ");
@@ -160,18 +212,29 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * helper method to ask for bid price
+     * @return integer showing amount entered by user
+     */
     public double askBidPrice() {
         Scanner scan4 = new Scanner(System.in);
         System.out.print("<DOUBLE> Enter Bid Price: ");
         return scan4.nextInt();
     }
 
+    /**
+     * helper method to ask for the date
+     * @return string showing the date in dd/mm/yyyy format
+     */
     public String askBidDate() {
         Scanner scan1 = new Scanner(System.in);
         System.out.print("<dd/mm/yyyy> Enter Bid Date: ");
         return scan1.nextLine();
     }
 
+    /**
+     * creates buyer object by asking first name and last name
+     */
     public void createBuyer() {
         String newGivenName = askFirstName();
         String newFamilyName = askLastName();
@@ -183,6 +246,9 @@ public class AutoShowroom {
             System.out.println("Something wrong with the buyer's values!!!");
     }
 
+    /**
+     * creates new bid object by asking needed informations
+     */
     public void createBid() {
         int newVehicleId = askVehicleId();
         int newBuyerId = askBuyerId();
@@ -200,12 +266,20 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * prints the current status, only to be executed at the beginning
+     */
     public void printStatus(){
         System.out.println("----------------------------------------");
         System.out.println("Welcome to FIT2099 Showroom\n");
         System.out.println("Thank you for visiting FIT2099 Showroom");
     }
 
+    /**
+     * gets vehicle from the ID
+     * @param vehicleId integer showing vehicle id
+     * @return corresponding vehicle object, returns none if not found in vehicleArray
+     */
     public Vehicle getVehicle(int vehicleId) {
         for (Vehicle thisVehicle : this.vehicleArray) {
             if (thisVehicle.getvId() == vehicleId) {
@@ -215,6 +289,10 @@ public class AutoShowroom {
         return null;
     }
 
+    /**
+     * gets the worst bid on a car specified by vehicle id, by bid price
+     * @param vehicleId integer ID to check the car for
+     */
     public void getSmallestBid(int vehicleId){
         if (getVehicle(vehicleId) == null){
             System.out.println("Wrong Vehicle ID!");
@@ -244,6 +322,10 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * gets the best bid on a car specified by vehicle id, with respect to bid price
+     * @param vehicleId integer Id specifying which car we look at
+     */
     public void getLargestBid(int vehicleId) {
         if (getVehicle(vehicleId) == null) {
             System.out.println("Wrong Vehicle ID!");
@@ -271,6 +353,10 @@ public class AutoShowroom {
         }
     }
 
+    /**
+     * deletes the bid object from the BidManager
+     * @param bidId specifies bid id to delete
+     */
     public void deleteBid(int bidId) {
         for (Vehicle thisVehicle : vehicleArray) {
             for (int key : buyerMap.keySet()) {
@@ -289,6 +375,9 @@ public class AutoShowroom {
         System.out.println("Item not found!\n");
     }
 
+    /**
+     * this asks the user which vehicle ID to ask for worst bid
+     */
     public void askSmallest(){
         int input;
         Scanner scanner = new Scanner(System.in);
@@ -302,6 +391,9 @@ public class AutoShowroom {
         getSmallestBid(input);
     }
 
+    /**
+     * asks the user which vehicle ID to ask for best bid
+     */
     public void askLargest(){
         int input;
         Scanner scanner = new Scanner(System.in);
@@ -315,6 +407,9 @@ public class AutoShowroom {
         getLargestBid(input);
     }
 
+    /**
+     * this asks user which bid id to delete
+     */
     public void askDelete(){
         int input;
         Scanner scanner = new Scanner(System.in);
@@ -328,6 +423,10 @@ public class AutoShowroom {
         deleteBid(input);
     }
 
+    /**
+     * This is my main method that enables the console. It asks for inputs
+     * only accepting integers in range 1-10, and keeps looping until 10 is typed
+     */
     public void showroom(){
         printStatus();
         int command;
@@ -369,6 +468,10 @@ public class AutoShowroom {
         } while (command != 10);
     }
 
+    /**
+     * prints out menu to allow user to see instruction of this program
+     * @return scanns the integer input and returns it
+     */
     public int selectMenu(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("1) New Sedan");
@@ -381,6 +484,10 @@ public class AutoShowroom {
         System.out.println("8) Show the Worst Bid");
         System.out.println("9) Delete Bid");
         System.out.println("10) Exit");
-        return scanner.nextInt();
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e){
+            return 0;
+        }
     }
 }

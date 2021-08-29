@@ -14,7 +14,14 @@ import java.util.Random;
  * @since 29/08/2021
  */
 public class BidsManager {
+    /**
+     *  bidMap is a hashmap storing BidManager data
+     */
     private final HashMap<Integer, Bid> bidMap;
+
+    /**
+     * empty parameter constructor that initializes bidMap
+     */
     public BidsManager(){
         bidMap = new HashMap<>();
     }
@@ -25,6 +32,12 @@ public class BidsManager {
 //        this.bidMap.put(buyerId, newBid);
 //    }
 
+    /**
+     * method that adds object to a HashMap
+     * @param buyer buyer object
+     * @param bidPrice double showing the bid price, has to be >= 0
+     * @param bidDate string showing date, has to be dd/mm/yyyy format
+     */
     public void addBidBuyer(Buyer buyer, double bidPrice, String bidDate){
         try {
             Bid newBid = new Bid(nextID(), buyer, bidPrice, bidDate);
@@ -35,17 +48,35 @@ public class BidsManager {
         }
     }
 
+    /**
+     * removes an object from the hashmap
+     * @param buyerId integer ID representing buyer
+     */
     public void removeBidBuyer(int buyerId){
         this.bidMap.remove(buyerId);
     }
 
+    /**
+     * getter for getting Bid object from the buyer id
+     * @param buyerId buyer id to look up in hashmap
+     * @return Bid object that corresponds to buyerId
+     */
     public Bid getBid(int buyerId){
         return bidMap.get(buyerId);
     }
+
+    /**
+     *
+     * @return gets the number of bids stored in bidMap
+     */
     public int getSize(){
         return bidMap.size();
     }
 
+    /**
+     * helper code that generates random integer
+     * @return random integer with 5 digits
+     */
     public int nextID() {
         Random r = new Random();
         int low = 10000;

@@ -10,6 +10,10 @@ import Week5Bootcamp.edu.monash.fit2099.AutoShowroom;
  */
 
 public class AutoShowroomDriver {
+    /**
+     * our main driver
+     * @param args arguments if necessary. this is our usual public static void main()
+     */
     public static void main(String[] args) {
         AutoShowroom showroom = new AutoShowroom();
         showroom.showroom();

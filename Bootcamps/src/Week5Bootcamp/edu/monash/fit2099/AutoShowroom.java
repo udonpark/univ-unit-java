@@ -2,6 +2,7 @@ package Week5Bootcamp.edu.monash.fit2099;
 import Week5Bootcamp.edu.monash.fit2099.bids.Bid;
 import Week5Bootcamp.edu.monash.fit2099.bids.BidsManager;
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.BidException;
 import Week5Bootcamp.edu.monash.fit2099.exceptions.SedanException;
 import Week5Bootcamp.edu.monash.fit2099.exceptions.TruckException;
 import Week5Bootcamp.edu.monash.fit2099.exceptions.VehicleException;
@@ -258,10 +259,13 @@ public class AutoShowroom {
         double newPrice = askBidPrice();
         String newDate = askBidDate();
         for (Vehicle thisVehicle : this.vehicleArray) {
-            System.out.println(thisVehicle.getvId());
             if (thisVehicle.getvId() == newVehicleId) {
-                thisVehicle.addBidBuyer(getBuyer(newBuyerId), newPrice, newDate);
-                break;
+                try {
+                    thisVehicle.addBidBuyer(getBuyer(newBuyerId), newPrice, newDate);
+                    break;
+                } catch (BidException e){
+                    System.out.println("Invalid Bid Price or Bid Date!");;
+                }
             }
         }
     }

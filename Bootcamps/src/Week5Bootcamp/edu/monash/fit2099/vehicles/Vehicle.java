@@ -2,6 +2,7 @@ package Week5Bootcamp.edu.monash.fit2099.vehicles;
 import Week5Bootcamp.edu.monash.fit2099.bids.Bid;
 import Week5Bootcamp.edu.monash.fit2099.bids.BidsManager;
 import Week5Bootcamp.edu.monash.fit2099.buyers.Buyer;
+import Week5Bootcamp.edu.monash.fit2099.exceptions.BidException;
 import Week5Bootcamp.edu.monash.fit2099.exceptions.VehicleException;
 
 import java.util.Random;
@@ -37,7 +38,7 @@ abstract public class Vehicle {
      * @param price Price of the bid, double
      * @param date Date of the bid, in specified dd/mm/yyyy format
      */
-    public void addBidBuyer(Buyer newBuyer, double price, String date){
+    public void addBidBuyer(Buyer newBuyer, double price, String date) throws BidException {
         this.bids.addBidBuyer(newBuyer, price, date);
     }
 

@@ -38,14 +38,10 @@ public class BidsManager {
      * @param bidPrice double showing the bid price, has to be >= 0
      * @param bidDate string showing date, has to be dd/mm/yyyy format
      */
-    public void addBidBuyer(Buyer buyer, double bidPrice, String bidDate){
-        try {
-            Bid newBid = new Bid(nextID(), buyer, bidPrice, bidDate);
-            this.bidMap.put(buyer.getBuyerId(), newBid);
-            System.out.println("Bid added!");
-        }catch (BidException e){
-            System.out.println(e.getMessage());
-        }
+    public void addBidBuyer(Buyer buyer, double bidPrice, String bidDate) throws BidException{
+        Bid newBid = new Bid(nextID(), buyer, bidPrice, bidDate);
+        this.bidMap.put(buyer.getBuyerId(), newBid);
+        System.out.println("Bid added!");
     }
 
     /**
